@@ -1,0 +1,25 @@
+﻿@using Sitecore.Mvc
+<!DOCTYPE html>
+<html>
+<head>
+	@Html.Sitecore().Placeholder("metadata")
+	<link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+	<link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/assets/css/flexslider.css" type="text/css" media="screen" />
+	<script src="/assets/js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="header-top">
+		<div class="container">
+			@Html.Sitecore().Placeholder("header")
+		</div>
+	</div>
+	@Html.Sitecore().Placeholder("main")
+	<div class="footer-bottom">
+		@Html.Sitecore().Placeholder("footer")
+	</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿<div class="head-nav">
+	<span class="menu"> </span>
+	<ul>
+		@foreach (var nav in @Model.NavigationItems)
+		{
+			<li @(Model.PageItem.ItemID == nav.ItemID ? "class=active" : "")>
+				<a href="@nav.GenerateUrl()">@nav.NavigationTitle</a>
+			</li>
+		}
+		<div class="clearfix"> </div>
+	</ul>
+</div>
+<div class="clearfix"> </div>
+<!-- script-for-nav -->
+<script>
+	$("span.menu").click(function() {
+		$(".head-nav ul").slideToggle(300, function() {
+			// Animation complete.
+		});
+	});
+</script>

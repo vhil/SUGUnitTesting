@@ -1,0 +1,19 @@
+﻿@model Helpfulcore.RenderingExceptions.Models.RenderingExceptionViewModel
+@if (!Sitecore.Context.PageMode.IsNormal || !HttpContext.Current.IsCustomErrorEnabled)
+{
+	<style>
+		.ScRdrExMessages { all: unset; margin: 20px 0; color: saddlebrown; font-size: initial; font-family: Arial, Helvetica, sans-serif; word-wrap: break-word; }
+		.ScRdrExMessages .ScRdrExHeader { color: #fff; background: saddlebrown; border-radius: 5px; padding: 5px 10px 5px 10px; height: 100%; width: 100%; font-size: initial; position: relative; }
+		.ScRdrExMessages li { all: unset; } 
+		.ScRdrExMessages ul { all: unset; display: block; padding: 10px; border: dashed 1px saddlebrown; border-top: none; }
+	</style>
+
+	<div class="ScRdrExMessages">
+		<div class="ScRdrExHeader">
+			Error while rendering view [@Model.RenderingName]. The rendering is lacking some configuration. Please, read description below and try to fix the problem.
+		</div>
+		<ul>
+			<li style="padding-left:20px;">@Model.Exception.Message</li>
+		</ul>
+	</div>
+}

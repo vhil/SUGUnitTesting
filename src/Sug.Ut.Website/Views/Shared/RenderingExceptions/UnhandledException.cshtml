@@ -1,0 +1,36 @@
+﻿@model Helpfulcore.RenderingExceptions.Models.RenderingExceptionViewModel
+@if (!Sitecore.Context.PageMode.IsNormal || !HttpContext.Current.IsCustomErrorEnabled)
+{
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<style>
+		.ScRdrUnhExMessages { all: unset; margin: 20px 0; color: rgb(132, 0, 0); font-size: initial; font-family: Arial, Helvetica, sans-serif; word-wrap: break-word; }
+		.ScRdrUnhExMessages .ScRdrUnhExDetails { all: inherit; }
+		.ScRdrUnhExMessages .ScRdrUnhExHeader { color: #fff; padding: 5px; height: 100%; background: rgb(132, 0, 0); border-radius: 5px; font-size: initial; position: relative; }
+		.ScRdrUnhExMessages .ScRdrUnhExHeader .ScRdrUnhExMainMessage { padding-left: 5px; padding-right: 38px; }
+		.ScRdrUnhExMessages li { all: unset; display: block; padding: 2px; border: dashed 1px rgb(132, 0, 0); border-top: none; font-size: smaller; }
+		.ScRdrUnhExMessages .ScRdrUnhExButtonExpand { right: -7px; top: 0px; border: none; padding: 1px 0px; margin: 0 8px 0 0; cursor: pointer; position: absolute; }
+	</style>
+
+	<div class="ScRdrUnhExMessages">
+		<div>
+			<div class="ScRdrUnhExHeader">
+				<div class="ScRdrUnhExMainMessage">
+					Error while rendering view [@Model.RenderingName]. Please, make sure the rendering is configured properly or contact your administrator.
+				</div>
+				<div class="ScRdrUnhExButtonExpand collapsed" onclick="collapseOrShow(this)">
+					<img src="/temp/IconCache/Applications/32x32/zoom_in.png">
+				</div>
+			</div>
+		</div>
+
+		<ul class="ScRdrUnhExDetails" style="display: none;">
+			@foreach (var line in Model.Exception.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()))
+			{
+				<li>@line</li>
+			}
+		</ul>
+	</div>
+	<script type="text/javascript">
+		function collapseOrShow(obj) { var button = jQuery(obj); if (button.hasClass("collapsed")) { button.removeClass("collapsed"); button.addClass("expanded"); button.find("img").attr("src", "/temp/IconCache/Applications/32x32/zoom_out.png"); button.parent().parent().parent().find(".ScRdrUnhExDetails").show(); return true; } else if (button.hasClass("expanded")) { button.removeClass("expanded"); button.addClass("collapsed"); button.find("img").attr("src", "/temp/IconCache/Applications/32x32/zoom_in.png"); button.parent().parent().parent().find(".ScRdrUnhExDetails").hide(); return true; } return false; };
+	</script>
+}

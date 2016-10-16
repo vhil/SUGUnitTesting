@@ -1,0 +1,21 @@
+﻿@model Helpfulcore.RenderingExceptions.Models.RenderingExceptionViewModel
+@if (!Sitecore.Context.PageMode.IsNormal || !HttpContext.Current.IsCustomErrorEnabled)
+{
+	<style>
+		.ScRdrPrmExMessages { all: unset; margin: 20px 0; color: #000a3e; font-size: initial; font-family: Arial, Helvetica, sans-serif; word-wrap: break-word; }
+		.ScRdrPrmExMessages .ScRdrPrmExHeader { color: #fff; background: #000a3e; border-radius: 5px; padding: 5px 10px 5px 10px; height: 100%; width: 100%; font-size: initial; position: relative; }
+		.ScRdrPrmExMessages li { all: unset; }
+		.ScRdrPrmExMessages ul { all: unset; display: block; padding: 10px; border: dashed 1px #000a3e; border-top: none; }
+	</style>
+
+	<div class="ScRdrPrmExMessages">
+		<div class="ScRdrPrmExHeader">
+			Some configuration is missing on the view [@Model.RenderingName] Please, make sure the rendering is configured properly.
+		</div>
+		<ul>
+			<li>
+				@Model.Exception.Message
+			</li>
+		</ul>
+	</div>
+}
