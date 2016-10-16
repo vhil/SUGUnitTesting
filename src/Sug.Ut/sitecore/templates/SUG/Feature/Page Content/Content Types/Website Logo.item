@@ -1,40 +1,40 @@
 ----item----
 version: 1
-id: {B8C23FBD-9A9F-4570-AB5F-38249B1E4CFF}
+id: {DC23040E-2384-43D9-B698-3073FCAAFF1E}
 database: master
-path: /sitecore/templates/SUG/Project/Page Types/Page
-parent: {5E45C53E-0BD2-4320-8DBD-337FCA3A76CC}
-name: Page
+path: /sitecore/templates/SUG/Feature/Page Content/Content Types/Website Logo
+parent: {E2F25814-7836-433B-A2C5-CC02E5D5D809}
+name: Website Logo
 master: {00000000-0000-0000-0000-000000000000}
 template: {AB86861A-6030-46C5-B394-E8F99E8B87DB}
 templatekey: Template
-created: 20161016T150953:636122273930670000
+created: 20161016T173913:636122363534500000
 
 ----field----
 field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
 name: __Base template
 key: __base template
-content-length: 77
+content-length: 38
 
-{F16CDC22-CF07-4688-B864-5825FA424C0E}|{312ED441-85C0-4ED2-9798-83153EDB248B}
+{1930BBEB-7805-471A-A3BE-4858AC7CF696}
 ----field----
 field: {F7D48A55-2158-4F02-9356-756654404F73}
 name: __Standard values
 key: __standard values
 content-length: 38
 
-{94F60726-9CC3-45E7-8AEA-7829B1979B83}
+{E662EE93-627E-4DD9-9C28-E7CD926115BB}
 ----field----
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
 name: __Icon
 key: __icon
-content-length: 21
+content-length: 35
 
-Office/32x32/text.png
+Office/32x32/painting_landscape.png
 ----version----
 language: en
 version: 1
-revision: 1bb2cafa-b3c9-48bb-a9a9-e459f0d78abe
+revision: 79f1dc32-5b94-40ba-bf73-dbf6dd0d97b8
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -42,7 +42,7 @@ name: __Created
 key: __created
 content-length: 16
 
-20161016T150953Z
+20161016T173913Z
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -56,14 +56,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-1bb2cafa-b3c9-48bb-a9a9-e459f0d78abe
+79f1dc32-5b94-40ba-bf73-dbf6dd0d97b8
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20161016T173022Z
+20161016T175723Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -212,6 +212,7 @@
     <Content Include="assets\js\jquery.wmuSlider.js" />
     <Content Include="packages.config" />
     <Content Include="App_Config\Include\Helpfulcore\Helpfulcore.RenderingExceptions.config" />
+    <Content Include="App_Config\Include\SiteDefinitions.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\Layouts\Default.cshtml" />
     <Content Include="Views\Shared\RenderingExceptions\UnhandledException.cshtml" />
@@ -223,7 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Views\Sublayouts\TwoColumnGrid.cshtml" />
+    <Content Include="Views\Sublayouts\TwoColumnGrid.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

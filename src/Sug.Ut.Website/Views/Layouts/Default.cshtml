@@ -19,7 +19,15 @@
 	</div>
 	@Html.Sitecore().Placeholder("main")
 	<div class="footer-bottom">
-		@Html.Sitecore().Placeholder("footer")
+		<div class="container">
+			<div class="footer-nav">
+				@Html.Sitecore().Placeholder("footer")
+			</div>
+			<div class="bottom">
+				<p>Implemented by <a href="https://www.linkedin.com/profile/view?id=AAMAAAxLwlQBcVpohTnaanOb0Gctl2RzQZwjHJo" target="_blank"> Volodymyr Hil</a></p>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
 	</div>
 </body>
 </html>
