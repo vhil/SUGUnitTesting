@@ -1,21 +1,29 @@
-﻿<div class="head-nav">
-	<span class="menu"> </span>
-	<ul>
-		@foreach (var nav in @Model.NavigationItems)
-		{
-			<li @(Model.PageItem.ItemID == nav.ItemID ? "class=active" : "")>
-				<a href="@nav.GenerateUrl()">@nav.NavigationTitle</a>
-			</li>
-		}
-		<div class="clearfix"> </div>
-	</ul>
-</div>
-<div class="clearfix"> </div>
-<!-- script-for-nav -->
-<script>
-	$("span.menu").click(function() {
-		$(".head-nav ul").slideToggle(300, function() {
-			// Animation complete.
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Sug.Ut.Navigation
+@model IEnumerable<INavigationNode>
+
+@if (Model.Any())
+{
+	<div class="head-nav">
+		<span class="menu"> </span>
+		<ul>
+			@foreach (var nav in Model)
+			{
+				<li @(nav.IsActive ? "class=active" : "")>
+					<a href="@nav.Url)">@nav.Title</a>
+				</li>
+			}
+			<div class="clearfix"> </div>
+		</ul>
+	</div>
+	<div class="clearfix"> </div>
+	<!-- script-for-nav -->
+	<script>
+		$("span.menu").click(function() {
+			$(".head-nav ul").slideToggle(300, function() {
+				// Animation complete.
+			});
 		});
-	});
-</script>
+	</script>
+}

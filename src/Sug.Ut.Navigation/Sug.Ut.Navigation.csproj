@@ -43,6 +43,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\packages\Sitecore.Kernel.8.2.160729\lib\NET452\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Mvc">
+      <HintPath>..\packages\Sitecore.Mvc.8.2.160729\lib\NET452\Sitecore.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -66,13 +72,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="INavigationNode.cs" />
+    <Compile Include="INavigationService.cs" />
+    <Compile Include="NavigationNode.cs" />
+    <Compile Include="NavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Views\Navigation\PrimaryNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Sug.Ut\Sug.Ut.Navigation.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Sug.Ut.SitecoreExtensions\Sug.Ut.SitecoreExtensions.csproj">
+      <Project>{4198affb-fd93-4d64-b793-42c7e1c4553a}</Project>
+      <Name>Sug.Ut.SitecoreExtensions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
