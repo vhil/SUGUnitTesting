@@ -18,6 +18,13 @@ content-length: 38
 
 {1930BBEB-7805-471A-A3BE-4858AC7CF696}
 ----field----
+field: {F7D48A55-2158-4F02-9356-756654404F73}
+name: __Standard values
+key: __standard values
+content-length: 38
+
+{F343AFE5-1CA1-410D-B52A-59F9ECF8E932}
+----field----
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
 name: __Icon
 key: __icon
@@ -27,7 +34,7 @@ Office/32x32/document_orientation_landscape.png
 ----version----
 language: en
 version: 1
-revision: 63ee7a38-a139-417f-adda-f1ad59b62e5a
+revision: 37e0de4f-2cd9-44fd-b0ed-6a131e63982b
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -49,14 +56,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-63ee7a38-a139-417f-adda-f1ad59b62e5a
+37e0de4f-2cd9-44fd-b0ed-6a131e63982b
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20161016T175258Z
+20161025T142057Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

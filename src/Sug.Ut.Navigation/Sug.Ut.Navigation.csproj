@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Helpfulcore.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Helpfulcore.Logging.1.0.1\lib\Helpfulcore.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\packages\Sitecore.Kernel.8.2.160729\lib\NET452\Sitecore.Kernel.dll</HintPath>
     </Reference>
@@ -72,24 +80,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\NavigationController.cs" />
-    <Compile Include="INavigationNode.cs" />
-    <Compile Include="INavigationService.cs" />
-    <Compile Include="NavigationNode.cs" />
-    <Compile Include="NavigationService.cs" />
+    <Compile Include="Services\INavigationNode.cs" />
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\NavigationNode.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesConfigurator.cs" />
+    <Compile Include="Templates.cs" />
     <Content Include="Views\Navigation\PrimaryNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Sug.Ut\Sug.Ut.Navigation.config" />
+    <Content Include="App_Config\Include\Feature\Sug.Ut.Navigation.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sug.Ut.SitecoreExtensions\Sug.Ut.SitecoreExtensions.csproj">
-      <Project>{4198affb-fd93-4d64-b793-42c7e1c4553a}</Project>
+      <Project>{BC12E816-46D2-4B6B-B5ED-5DEBDF1EFC9A}</Project>
       <Name>Sug.Ut.SitecoreExtensions</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

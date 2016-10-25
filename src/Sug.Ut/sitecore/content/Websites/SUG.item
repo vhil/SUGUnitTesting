@@ -13,7 +13,7 @@ created: 20161016T172555:636122355556230000
 ----version----
 language: en
 version: 1
-revision: e1b273bf-c009-4ab8-8dd3-16395a22da95
+revision: 46fec6b5-336a-4bb4-993c-9db8f2dd0d8b
 
 ----field----
 field: {56AD3D90-A189-4864-ADB5-851FCDECB645}
@@ -22,6 +22,13 @@ key: meta title
 content-length: 10
 
 SUG Meetup
+----field----
+field: {F8750A5A-DBF2-479A-B9C7-6CCE9F4A2F7B}
+name: Site Logo
+key: site logo
+content-length: 58
+
+<image mediaid="{094AED03-02E7-4868-80CB-19926661FB77}" />
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
@@ -35,14 +42,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-e1b273bf-c009-4ab8-8dd3-16395a22da95
+46fec6b5-336a-4bb4-993c-9db8f2dd0d8b
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20161016T180102Z
+20161025T133006Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

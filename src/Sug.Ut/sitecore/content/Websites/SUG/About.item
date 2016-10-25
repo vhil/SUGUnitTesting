@@ -13,7 +13,7 @@ created: 20161016T173241:636122359613100000
 ----version----
 language: en
 version: 1
-revision: 41e6a8ac-f6f7-478f-ae8c-036ad469ba91
+revision: 98659aee-f408-4544-8736-eb4872f941c6
 
 ----field----
 field: {2F806BF2-D70E-46AB-AE07-DE758CB38919}
@@ -30,6 +30,13 @@ content-length: 5
 
 About
 ----field----
+field: {04BF00DB-F5FB-41F7-8AB7-22408372A981}
+name: __Final Renderings
+key: __final renderings
+content-length: 949
+
+<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{2D749291-0D93-4D75-8A68-F7298DBBA795}" p:before="*" s:ds="{ACB32BBC-A99C-4B7A-A6E2-404C53F5C5D0}" s:id="{C7644068-F568-4B6A-8391-1999B844D10B}" s:par="" s:ph="/main/sidebar-content" /><r uid="{4FD06D7B-F0A5-4BC9-8710-BA08469ABFC9}" p:after="r[@uid='{2D749291-0D93-4D75-8A68-F7298DBBA795}']" s:ds="{3537656A-7D4B-40A7-8289-84C60E8E230C}" s:id="{4657ABE4-1EF1-4E9A-B2B4-91EAAD7A7CEE}" s:par="" s:ph="/main/content" /><r uid="{5E214DB4-ED60-4E3F-B5F4-8946C61D772D}" p:after="r[@uid='{4FD06D7B-F0A5-4BC9-8710-BA08469ABFC9}']" s:ds="{ACB32BBC-A99C-4B7A-A6E2-404C53F5C5D0}" s:id="{C7644068-F568-4B6A-8391-1999B844D10B}" s:ph="/main/content" /><r uid="{D57789EE-D8C8-430B-ADF3-04633D73EAB1}" p:after="r[@uid='{5E214DB4-ED60-4E3F-B5F4-8946C61D772D}']" s:ds="{9A432DAF-B526-4809-B5CE-9033D43046A8}" s:id="{B9ECAEF1-8F43-4F41-A787-74755CAD93DD}" s:ph="main" /></d></r>
+----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
@@ -42,14 +49,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-41e6a8ac-f6f7-478f-ae8c-036ad469ba91
+98659aee-f408-4544-8736-eb4872f941c6
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20161016T173241Z
+20161025T144112Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -57,3 +64,10 @@ key: __updated by
 content-length: 14
 
 sitecore\admin
+----field----
+field: {001DD393-96C5-490B-924A-B0F25CD9EFD8}
+name: __Lock
+key: __lock
+content-length: 5
+
+<r />

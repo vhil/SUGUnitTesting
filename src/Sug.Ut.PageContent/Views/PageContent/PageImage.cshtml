@@ -1,5 +1,14 @@
-﻿<div class="logo">
-	<a href="/">
-		@Model.SiteRoot.SiteLogo.Render()
-	</a>
-</div>
+﻿@using Helpfulcore.RenderingExceptions
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sug.Ut.PageContent
+@using Sug.Ut.SitecoreExtensions.Extensions
+@model RenderingModel
+@{
+    if (!Model.Rendering.Item.IsDerived(Templates.PageImage.TemplateId))
+    {
+        throw new RenderingParametersException("Data Source");
+    }
+}
+
+@Html.Sitecore().Field(Templates.PageImage.FieldNames.PageImage, Model.Rendering.Item, new { @class = "img-responsive"})

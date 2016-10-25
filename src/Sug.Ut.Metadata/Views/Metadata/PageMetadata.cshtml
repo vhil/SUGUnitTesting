@@ -1,10 +1,7 @@
-﻿@if (siteRoot != null && contextItem != null)
-{
-	<title>@siteRoot.SiteTitle | @contextItem.NavigationTitle </title>
-}
-@if (contextItem != null)
-{
-	<meta name="title" content="@contextItem.MetaTitle.RawValue" />
-	<meta name="descriptiopn" content="@contextItem.MetaDescription.Value" />
-	<meta name="keywords" content="@contextItem.MetaKeywords.Value" />
-}
+﻿@using Sug.Ut.Metadata.Services
+@model IPageMetadata
+
+<title>@Model.SiteTitle | @Model.MetaTitle</title>
+<meta name="title" content="@Model.MetaTitle" />
+<meta name="descriptiopn" content="@Model.MetaDescription" />
+<meta name="keywords" content="@Model.MetaKeywords" />

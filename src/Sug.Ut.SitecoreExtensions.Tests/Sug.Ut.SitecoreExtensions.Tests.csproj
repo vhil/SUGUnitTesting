@@ -42,12 +42,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sug.Ut.SitecoreExtensions\Sug.Ut.SitecoreExtensions.csproj">
-      <Project>{4198affb-fd93-4d64-b793-42c7e1c4553a}</Project>
-      <Name>Sug.Ut.SitecoreExtensions</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

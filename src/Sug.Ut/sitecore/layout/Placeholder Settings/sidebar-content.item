@@ -21,13 +21,13 @@ sidebar-content
 field: {E391B526-D0C5-439D-803E-17512EAE6222}
 name: Allowed Controls
 key: allowed controls
-content-length: 38
+content-length: 77
 
-{4657ABE4-1EF1-4E9A-B2B4-91EAAD7A7CEE}
+{4657ABE4-1EF1-4E9A-B2B4-91EAAD7A7CEE}|{C7644068-F568-4B6A-8391-1999B844D10B}
 ----version----
 language: en
 version: 1
-revision: b3532381-19db-4ba6-b8cd-8865eee2766f
+revision: d1d9b4ae-f03f-4d30-bb33-29351301f4bd
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -42,14 +42,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-b3532381-19db-4ba6-b8cd-8865eee2766f
+d1d9b4ae-f03f-4d30-bb33-29351301f4bd
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20161016T175212Z
+20161025T144003Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -1,0 +1,10 @@
+﻿@using Sitecore.Data.Items
+@using Sitecore.Mvc
+@using Sug.Ut.Sites
+@model Item
+
+<div class="logo">
+	<a href="/">
+		@Html.Sitecore().Field(Templates.SiteLogo.FieldNames.SiteLogo, Model)
+	</a>
+</div>

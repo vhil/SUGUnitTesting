@@ -1,0 +1,59 @@
+----item----
+version: 1
+id: {ACB32BBC-A99C-4B7A-A6E2-404C53F5C5D0}
+database: master
+path: /sitecore/content/Websites/SUG/About/Page Content/Page Body
+parent: {96F4A6BC-6CC5-48D3-BC6E-86132367441B}
+name: Page Body
+master: {00000000-0000-0000-0000-000000000000}
+template: {478F623F-E2CE-4EA8-B8E7-081E98A0AA22}
+templatekey: Page Body
+created: 20161025T144019:636130032196430000
+
+----version----
+language: en
+version: 1
+revision: 191c2612-1d63-4d5f-8f37-7a27f59db2ce
+
+----field----
+field: {6F41F93F-2F57-44A4-B983-E942CA49FB3C}
+name: Page Body
+key: page body
+content-length: 996
+
+On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161025T144019Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+191c2612-1d63-4d5f-8f37-7a27f59db2ce
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161025T144044Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {001DD393-96C5-490B-924A-B0F25CD9EFD8}
+name: __Lock
+key: __lock
+content-length: 5
+
+<r />

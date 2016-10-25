@@ -1,6 +1,6 @@
 ﻿@using System.Collections.Generic
 @using System.Linq
-@using Sug.Ut.Navigation
+@using Sug.Ut.Navigation.Services
 @model IEnumerable<INavigationNode>
 
 @if (Model.Any())
@@ -11,7 +11,7 @@
 			@foreach (var nav in Model)
 			{
 				<li @(nav.IsActive ? "class=active" : "")>
-					<a href="@nav.Url)">@nav.Title</a>
+					<a href="@nav.Url">@nav.Title</a>
 				</li>
 			}
 			<div class="clearfix"> </div>

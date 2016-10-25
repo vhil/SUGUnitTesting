@@ -1,0 +1,52 @@
+----item----
+version: 1
+id: {5616A187-189D-40DC-A4AB-CF8BE6B84530}
+database: master
+path: /sitecore/content/Websites/SUG/Home/Page Content/Page Title
+parent: {CA33423F-B32A-4FA1-BEC8-9AC53075F4C1}
+name: Page Title
+master: {00000000-0000-0000-0000-000000000000}
+template: {3F6DDFA2-C79B-4C4A-86D4-696E76303C92}
+templatekey: Page Title
+created: 20161025T142236:636130021566030000
+
+----version----
+language: en
+version: 1
+revision: a4b92177-6e25-44e0-8a99-313008650e28
+
+----field----
+field: {1DA953BA-45A9-4534-8D35-A1F21589EDDF}
+name: Page Title
+key: page title
+content-length: 16
+
+SUG Unit Testing
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161025T142236Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+a4b92177-6e25-44e0-8a99-313008650e28
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161025T143537Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

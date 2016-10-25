@@ -1,5 +1,20 @@
-﻿<div class="logo">
-	<a href="/">
-		@Model.SiteRoot.SiteLogo.Render()
-	</a>
+﻿@using Helpfulcore.RenderingExceptions
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sug.Ut.PageContent
+@using Sug.Ut.SitecoreExtensions.Extensions
+@model RenderingModel
+@{
+    if (!@Model.Rendering.Item.IsDerived(Templates.PageTitle.TemplateId))
+    {
+        throw new RenderingParametersException("Data Source");
+    }
+}
+
+<div class="banner">
+    <div class="container">
+        <div class="main">
+            <h2>@Html.Sitecore().Field(Templates.PageTitle.FieldNames.PageTitle, Model.Rendering.Item)</h2>
+        </div>
+    </div>
 </div>
