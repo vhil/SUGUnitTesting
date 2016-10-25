@@ -3,7 +3,9 @@ using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using Sitecore.Abstractions;
+using Sitecore.Configuration;
 using Sitecore.Data;
+using Sitecore.Data.Engines;
 using Sitecore.Data.Items;
 using Sitecore.Data.Templates;
 using Sitecore.DependencyInjection;
@@ -18,74 +20,147 @@ namespace Sug.Ut.SitecoreExtensions.Tests.Services
     {
         protected IServiceProvider ServiceProvider;
         protected IItemExtensionsService ItemExtensions;
-        protected Item TemplateItem;
-        protected Item Item;
-        protected ID BaseTemplateId;
-        protected ID ItemId;
         protected Database Database;
+	    protected Language Language;
+	    protected TemplateEngine TemplateEngine;
+	    protected BaseTemplateManager TemplateManager;
 
-        [OneTimeSetUp]
+		[OneTimeSetUp]
         public void SetUp()
         {
             this.Database = Substitute.For<Database>();
-            this.BaseTemplateId = ID.NewID;
-            this.ItemId = ID.NewID;
+			this.Language = Substitute.For<Language>();
 
-            var language = Substitute.For<Language>();
-            language.Name.Returns("en");
-            
-            this.TemplateItem = Substitute.For<Item>(
-                this.BaseTemplateId, 
-                new ItemData(
-                    new ItemDefinition(this.BaseTemplateId, "Base Template", ID.NewID, ID.NewID), 
-                    language, 
-                    Version.Parse(1), 
-                    new FieldList()
-                ), 
-                this.Database);
+			this.TemplateEngine = Substitute.For<TemplateEngine>(this.Database);
+			this.TemplateManager = Substitute.For<BaseTemplateManager>();
+			this.ServiceProvider = Substitute.For<IServiceProvider>();
 
-            this.Item = Substitute.For<Item>(
-                this.ItemId, 
-                new ItemData(
-                    new ItemDefinition(this.ItemId, "Item Of Base Template", this.BaseTemplateId, ID.NewID), 
-                    language, 
-                    Version.Parse(1), 
-                    new FieldList()
-                ), 
-                this.Database);
+			this.ServiceProvider.GetService(typeof(BaseTemplateManager)).Returns(this.TemplateManager);
+			ServiceLocator.SetServiceProvider(this.ServiceProvider);
 
-            var template = new Template.Builder("Base Template", this.BaseTemplateId, new TemplateCollection()).Template;
+			var templateRecords = Substitute.For<TemplateRecords>(this.Database);
 
-            var templateManager = Substitute.For<BaseTemplateManager>();
-            templateManager.GetTemplate(this.BaseTemplateId, this.Database).Returns(template);
-            templateManager.GetTemplate(this.Item).Returns(template);
+			this.Database.Templates.Returns(templateRecords);
 
-            this.ServiceProvider = Substitute.For<IServiceProvider>();
-            this.ServiceProvider.GetService(typeof (BaseTemplateManager)).Returns(templateManager);
-            ServiceLocator.SetServiceProvider(this.ServiceProvider);
+			Sitecore.Context.Database = this.Database;
+			Sitecore.Context.Language = this.Language;
 
-            var templateRecords = Substitute.For<TemplateRecords>(this.Database);
-
-            this.Database.Templates.Returns(templateRecords);
-
-            Sitecore.Context.Database = this.Database;
-            Sitecore.Context.Language = language;
-
-            this.ItemExtensions = new ItemExtensionsService();
+			this.ItemExtensions = new ItemExtensionsService();
         }
 
         [Test]
         public void IsDerived_ItemIsOfGivenTemplate_ReturnsTrue()
         {
-            // setup
+			// setup
+			#region Setup
 
-            // execute
+			var baseTemplateId = ID.NewID;
+			var itemId = ID.NewID;
 
-            var isDerived = this.ItemExtensions.IsDerived(this.Item, this.BaseTemplateId);
+			var item = Substitute.For<Item>(
+				itemId,
+				new ItemData(
+					new ItemDefinition(itemId, "Item Of Template", baseTemplateId, ID.NewID),
+					this.Language,
+					Version.Parse(1),
+					new FieldList()
+				),
+				this.Database);
+
+			var template = new Template.Builder("Base Template", baseTemplateId, new TemplateCollection()).Template;
+
+			this.TemplateManager.GetTemplate(baseTemplateId, this.Database).Returns(template);
+			this.TemplateManager.GetTemplate(item).Returns(template);
+
+			#endregion
+
+			// execute
+			var isDerived = this.ItemExtensions.IsDerived(item, baseTemplateId);
 
             // assert
-
-            isDerived.Should().BeTrue();
+			isDerived.Should().BeTrue();
         }
-    }
+
+		[Test]
+		public void IsDerived_ItemInheritsBaseTemplate_ReturnsTrue()
+		{
+			// setup
+			#region Setup
+
+			var itemTemplateId = ID.NewID;
+			var baseTemplateId = ID.NewID;
+			var itemId = ID.NewID;
+
+			var item = Substitute.For<Item>(
+				itemId,
+				new ItemData(
+					new ItemDefinition(itemId, "Item Of Base Template", itemTemplateId, ID.Null),
+					this.Language,
+					Version.Parse(1),
+					new FieldList()
+				),
+				this.Database);
+
+			var baseTemplate = new Template.Builder("Base Template", baseTemplateId, this.TemplateEngine).Template;
+			var itemTemplateItem = new Template.Builder("Item Template", itemTemplateId, this.TemplateEngine);
+			itemTemplateItem.SetBaseIDs(baseTemplateId.ToString());
+			var itemTemplate = itemTemplateItem.Template;
+
+			this.TemplateEngine.GetTemplate(itemTemplateId).Returns(itemTemplate);
+			this.TemplateEngine.GetTemplate(baseTemplateId).Returns(baseTemplate);
+
+			this.TemplateManager.GetTemplate(itemTemplateId, this.Database).Returns(itemTemplate);
+			this.TemplateManager.GetTemplate(baseTemplateId, this.Database).Returns(baseTemplate);
+			this.TemplateManager.GetTemplate(item).Returns(itemTemplate);
+
+			#endregion
+
+			// execute
+			var isDerived = this.ItemExtensions.IsDerived(item, baseTemplateId);
+
+			// assert
+			isDerived.Should().BeTrue();
+		}
+
+		[Test]
+		public void IsDerived_ItemIsNotOfBaseTemplate_ReturnsTrue()
+		{
+			// setup
+			#region Setup
+
+			var itemTemplateId = ID.NewID;
+			var baseTemplateId = ID.NewID;
+			var itemId = ID.NewID;
+
+			var item = Substitute.For<Item>(
+				itemId,
+				new ItemData(
+					new ItemDefinition(itemId, "Item Of Template", ID.NewID, ID.NewID),
+					this.Language,
+					Version.Parse(1),
+					new FieldList()
+				),
+				this.Database);
+
+			var template = new Template.Builder("Base Template", baseTemplateId, new TemplateCollection()).Template;
+
+			var baseTemplate = new Template.Builder("Base Template", baseTemplateId, this.TemplateEngine).Template;
+			var itemTemplate = new Template.Builder("Item Template", itemTemplateId, this.TemplateEngine).Template;
+
+			this.TemplateEngine.GetTemplate(itemTemplateId).Returns(itemTemplate);
+			this.TemplateEngine.GetTemplate(baseTemplateId).Returns(baseTemplate);
+
+			this.TemplateManager.GetTemplate(itemTemplateId, this.Database).Returns(itemTemplate);
+			this.TemplateManager.GetTemplate(baseTemplateId, this.Database).Returns(baseTemplate);
+			this.TemplateManager.GetTemplate(item).Returns(itemTemplate);
+
+			#endregion
+
+			// execute
+			var isDerived = this.ItemExtensions.IsDerived(item, baseTemplateId);
+
+			// assert
+			isDerived.Should().BeFalse();
+		}
+	}
 }
