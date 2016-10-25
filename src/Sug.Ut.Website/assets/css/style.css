@@ -539,6 +539,7 @@ i.in:hover{
 /*-- about-section --*/
 .about-section{
 	margin:3em 1em;
+    min-height: 555px;
 }
 .about-section h2{
 	font-size:2.5em;

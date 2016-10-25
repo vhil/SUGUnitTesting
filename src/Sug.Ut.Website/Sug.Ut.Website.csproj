@@ -213,6 +213,7 @@
     <Content Include="packages.config" />
     <Content Include="App_Config\Include\Helpfulcore\Helpfulcore.RenderingExceptions.config" />
     <Content Include="App_Config\Include\SiteDefinitions.config" />
+    <Content Include="App_Config\Include\SitecoreSettings.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <Content Include="Views\Layouts\Default.cshtml" />
     <Content Include="Views\Shared\RenderingExceptions\UnhandledException.cshtml" />
