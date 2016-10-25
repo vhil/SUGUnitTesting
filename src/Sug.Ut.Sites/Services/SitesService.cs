@@ -14,9 +14,7 @@ namespace Sug.Ut.Sites.Services
 
         public Item GetSiteLogoItem(Item renderingItem)
         {
-            return this.ItemExtensions.IsDerived(renderingItem, Templates.SiteLogo.TemplateId)
-                ? renderingItem
-                : this.ItemExtensions.GetAncestorOrSelfOfTemplate(renderingItem, Templates.SiteLogo.TemplateId);
+            return this.ItemExtensions.GetAncestorOrSelfOfTemplate(renderingItem, Templates.SiteLogo.TemplateId);
         }
     }
 }

@@ -48,7 +48,33 @@ namespace Sug.Ut.SitecoreExtensions.Tests.Services
 			this.ItemExtensions = new ItemExtensionsService();
         }
 
-        [Test]
+		[Test]
+		public void IsDerived_ItemIsNull_DoesNotThrowException()
+		{
+			// setup
+			Item item = null;
+
+			// act
+			Action action = () => this.ItemExtensions.IsDerived(item, ID.NewID);
+
+			// assert
+			action.ShouldNotThrow<ArgumentNullException>();
+		}
+
+		[Test]
+		public void IsDerived_ItemIsNull_ReturnsFalse()
+		{
+			// setup
+			Item item = null;
+
+			// act
+			var result = this.ItemExtensions.IsDerived(item, ID.NewID);
+
+			// assert
+			result.Should().BeFalse();
+		}
+
+		[Test]
         public void IsDerived_ItemIsOfGivenTemplate_ReturnsTrue()
         {
 			// setup
@@ -74,7 +100,7 @@ namespace Sug.Ut.SitecoreExtensions.Tests.Services
 
 			#endregion
 
-			// execute
+			// act
 			var isDerived = this.ItemExtensions.IsDerived(item, baseTemplateId);
 
             // assert
@@ -115,7 +141,7 @@ namespace Sug.Ut.SitecoreExtensions.Tests.Services
 
 			#endregion
 
-			// execute
+			// act
 			var isDerived = this.ItemExtensions.IsDerived(item, baseTemplateId);
 
 			// assert
@@ -156,11 +182,24 @@ namespace Sug.Ut.SitecoreExtensions.Tests.Services
 
 			#endregion
 
-			// execute
+			// act
 			var isDerived = this.ItemExtensions.IsDerived(item, baseTemplateId);
 
 			// assert
 			isDerived.Should().BeFalse();
 		}
-	}
+
+	    [Test]
+	    public void GetAncestorOrSelfOfTemplate_NullItem_ThrowsArgumentNullException()
+	    {
+			// setup
+		    Item item = null;
+
+			// act
+		    Action action = () => this.ItemExtensions.GetAncestorOrSelfOfTemplate(item, ID.NewID);
+
+			// assert
+		    action.ShouldThrow<ArgumentNullException>();
+	    }
+    }
 }

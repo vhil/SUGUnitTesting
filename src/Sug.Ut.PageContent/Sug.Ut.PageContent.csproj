@@ -176,9 +176,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Sug.Ut.SitecoreExtensions\Sug.Ut.SitecoreExtensions.csproj">
       <Project>{bc12e816-46d2-4b6b-b5ed-5debdf1efc9a}</Project>

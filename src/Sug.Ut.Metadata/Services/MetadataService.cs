@@ -1,4 +1,5 @@
-﻿using Sitecore.Data.Items;
+﻿using System;
+using Sitecore.Data.Items;
 using Sug.Ut.SitecoreExtensions.Services;
 
 namespace Sug.Ut.Metadata.Services
@@ -14,7 +15,12 @@ namespace Sug.Ut.Metadata.Services
 
         public IPageMetadata GetPageMetadata(Item renderingItem)
         {
-            var websiteMetadataItem = this.GetWebsiteMetadataItem(renderingItem);
+	        if (renderingItem == null)
+	        {
+				throw new ArgumentNullException(nameof(renderingItem));
+	        }
+
+	        var websiteMetadataItem = this.GetWebsiteMetadataItem(renderingItem);
 
             var pageMetadata = new PageMetadata();
 
