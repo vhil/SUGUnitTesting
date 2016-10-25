@@ -21,9 +21,6 @@ gulp.task("default", function (callback) {
 	callback);
 });
 
-/*****************************
-  Publish
-*****************************/
 gulp.task("Publish-Solution", function () {
 	var dest = config.websiteRoot;
 	var targets = ["Build"];
@@ -54,67 +51,3 @@ gulp.task("Publish-Solution", function () {
 		  }));
 	  }));
 });
-
-//gulp.task("Publish-Assemblies", function () {
-//  var root = "./src";
-//  var binFiles = [root + "/**/bin/Sug.**.{dll,pdb}", "!" + root + "/**/bin/Sug.**.Tests.{dll,pdb}"];
-//  var destination = config.websiteRoot + "/bin/";
-//  return gulp.src(binFiles, { base: root })
-//    .pipe(rename({ dirname: "" }))
-//    .pipe(newer(destination))
-//    .pipe(debug({ title: "Copying " }))
-//    .pipe(gulp.dest(destination));
-//});
-
-//gulp.task("Publish-All-Views", function () {
-//  var root = "./src";
-//  var roots = [root + "/**/Views", "!" + root + "/**/obj/**/Views"];
-//  var files = "/**/*.cshtml";
-//  var destination = config.websiteRoot + "\\Views";
-//  return gulp.src(roots, { base: root }).pipe(
-//    foreach(function (stream, file) {
-//      console.log("Publishing from " + file.path);
-//      gulp.src(file.path + files, { base: file.path })
-//        .pipe(newer(destination))
-//        .pipe(debug({ title: "Copying " }))
-//        .pipe(gulp.dest(destination));
-//      return stream;
-//    })
-//  );
-//});
-
-//gulp.task("Publish-All-Configs", function () {
-//  var root = "./src";
-//  var roots = [root + "/**/App_Config", "!" + root + "/**/obj/**/App_Config"];
-//  var files = "/**/*.config";
-//  var destination = config.websiteRoot + "\\App_Config";
-//  return gulp.src(roots, { base: root }).pipe(
-//    foreach(function (stream, file) {
-//      console.log("Publishing from " + file.path);
-//      gulp.src(file.path + files, { base: file.path })
-//        .pipe(newer(destination))
-//        .pipe(debug({ title: "Copying " }))
-//        .pipe(gulp.dest(destination));
-//      return stream;
-//    })
-//  );
-//});
-
-//gulp.task("Auto-Publish-Views", function () {
-//  var root = "./src";
-//  var roots = [root + "/**/Views", "!" + root + "/**/obj/**/Views"];
-//  var files = "/**/*.cshtml";
-//  var destination = config.websiteRoot + "\\Views";
-//  gulp.src(roots, { base: root }).pipe(
-//    foreach(function (stream, rootFolder) {
-//      gulp.watch(rootFolder.path + files, function (event) {
-//        if (event.type === "changed") {
-//          console.log("publish this file " + event.path);
-//          gulp.src(event.path, { base: rootFolder.path }).pipe(gulp.dest(destination));
-//        }
-//        console.log("published " + event.path);
-//      });
-//      return stream;
-//    })
-//  );
-//});
