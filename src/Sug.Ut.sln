@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{539E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Navigation", "Navigation", "{AC0AD6F1-4A41-4527-BB77-ABDB66A58787}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sug.Ut.Navigation.Tests", "Sug.Ut.Navigation.Tests\Sug.Ut.Navigation.Tests.csproj", "{789E97BA-476C-4A5A-9DBB-8747A7A08203}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sug.Ut.Navigation.Tests.FakeDb", "Sug.Ut.Navigation.Tests\Sug.Ut.Navigation.Tests.FakeDb.csproj", "{789E97BA-476C-4A5A-9DBB-8747A7A08203}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sug.Ut.Website", "Sug.Ut.Website\Sug.Ut.Website.csproj", "{FB7C5502-FB2D-41F1-B498-05319795ABE3}"
 EndProject
@@ -50,6 +50,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sites", "Sites", "{CA343EF1-8051-4651-8726-3F9743CC3FA7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sug.Ut.Sites", "Sug.Ut.Sites\Sug.Ut.Sites.csproj", "{DA5051A6-DE24-4070-AB44-2CE17C105FF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sitecore.Fakes", "Sitecore.Fakes", "{2A42E24F-D6AD-4780-9E07-33B1D5FA0DE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Fakes", "Sitecore.Fakes\Sitecore.Fakes.csproj", "{0F71EFF9-9E35-4961-8492-E2CEC5769C67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sug.Ut.SitecoreExtensions.Tests.FakeDb", "Sug.Ut.SitecoreExtensions.Tests.FakeDb\Sug.Ut.SitecoreExtensions.Tests.FakeDb.csproj", "{4BA90C3C-98A9-4E50-9588-6F11AF234552}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sitecore.FakeDb", "Sitecore.FakeDb", "{D5202916-FF94-4408-830E-F911DAC981B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.FakeDb.Construct", "Sitecore.FakeDb.Construct\Sitecore.FakeDb.Construct.csproj", "{ECCCB0E8-63C5-4852-81D7-E5F7F9A9AB7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +113,18 @@ Global
 		{DA5051A6-DE24-4070-AB44-2CE17C105FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA5051A6-DE24-4070-AB44-2CE17C105FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA5051A6-DE24-4070-AB44-2CE17C105FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F71EFF9-9E35-4961-8492-E2CEC5769C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F71EFF9-9E35-4961-8492-E2CEC5769C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F71EFF9-9E35-4961-8492-E2CEC5769C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F71EFF9-9E35-4961-8492-E2CEC5769C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA90C3C-98A9-4E50-9588-6F11AF234552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA90C3C-98A9-4E50-9588-6F11AF234552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA90C3C-98A9-4E50-9588-6F11AF234552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA90C3C-98A9-4E50-9588-6F11AF234552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECCCB0E8-63C5-4852-81D7-E5F7F9A9AB7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCCB0E8-63C5-4852-81D7-E5F7F9A9AB7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCCB0E8-63C5-4852-81D7-E5F7F9A9AB7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCCB0E8-63C5-4852-81D7-E5F7F9A9AB7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,5 +146,8 @@ Global
 		{BC12E816-46D2-4B6B-B5ED-5DEBDF1EFC9A} = {63E79DFA-F916-47A1-90E9-D94A3DA5C470}
 		{CA343EF1-8051-4651-8726-3F9743CC3FA7} = {0C1C97B4-6422-46E3-83E8-EB100AB02377}
 		{DA5051A6-DE24-4070-AB44-2CE17C105FF8} = {CA343EF1-8051-4651-8726-3F9743CC3FA7}
+		{0F71EFF9-9E35-4961-8492-E2CEC5769C67} = {2A42E24F-D6AD-4780-9E07-33B1D5FA0DE4}
+		{4BA90C3C-98A9-4E50-9588-6F11AF234552} = {63E79DFA-F916-47A1-90E9-D94A3DA5C470}
+		{ECCCB0E8-63C5-4852-81D7-E5F7F9A9AB7B} = {D5202916-FF94-4408-830E-F911DAC981B3}
 	EndGlobalSection
 EndGlobal
