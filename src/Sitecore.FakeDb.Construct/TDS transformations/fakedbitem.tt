@@ -1,0 +1,325 @@
+<#@ template language="C#" debug="true" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="HedgehogDevelopment.SitecoreProject.VSIP.CodeGeneration.Models" #>
+<#
+// The Item template is called for every Sitecore item elegible for code generation. TDS will execute this T4 template every time a
+// template or field on a template changes in TDS. The T4 template is responsible for generating code for only the Sitecore item TDS
+// passes to the template. TDS will join all created templates together to create a single file. 
+//
+// Version 4 of TDS only supports generating code for Sitecore Template items.
+
+// Parameters passed to the T4 Template for code generation
+
+//   Model: This parameter contains information about the Sitecore Item to be generated. The Model will always be a type that inherits from SitecoreItem.
+#>
+<#@ parameter name="Model" type="HedgehogDevelopment.SitecoreProject.VSIP.CodeGeneration.Models.SitecoreItem" #>
+<#
+// 	DefaultNamespace: The DefaultNamespace parameter contains the default namespace of the project where the generated
+//					  code file resides.
+#>
+<#@ parameter name="DefaultNamespace" type="System.String" #>
+<#
+/*   The following types are used during code generation:
+
+/// <summary>
+/// Represents the SitecoreItem to be passed to the T4 template. Any object that is a SitecoreItem will inherit from this object.
+/// </summary>
+public class SitecoreItem
+{
+    /// <summary>
+    /// The Sitecore item ID.
+    /// </summary>
+    public Guid ID { get; set; }
+
+    /// <summary>
+    /// The name of the Sitecore item. This may be different than the Display Name.
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
+    /// The path to the item from the Sitecore root.
+    /// </summary>
+    public string Path { get; set; }
+
+    /// <summary>
+    /// Any custom data associated with the item. This data can be set on the property page associated with the Sitecore item in the solution explorer.
+    /// </summary>
+    public string Data { get; set; }
+
+    /// <summary>
+    /// The Parent SitecoreItem in the Sitecore hierarchy.
+    /// </summary>
+    public SitecoreItem Parent { get; set; }
+
+    /// <summary>
+    /// The name of the template the item is based on
+    /// </summary>
+    public string TemplateName { get; set; }
+
+    /// <summary>
+    /// The ID of the template the item is based on
+    /// </summary>
+    public Guid TemplateId { get; set; }
+
+    /// <summary>
+    /// Additional sitecore fields. These fields are set on the Code Generation Property page. 
+    /// The key in the dictionary is the Field name, the value is the value of the field.
+    /// </summary>
+    public Dictionary<string, string> SitecoreFields;
+
+	/// <summary>
+    /// The calculated Namespace for the item. Each Sitecore item above the template is represented as part of the namespace. 
+    /// A new Namespace can be set at any item in the items property page. This allows the code generation namespace to be arranged differently 
+    /// than the Sitecore template hierarchy.
+    /// </summary>
+    public string Namespace { get; set; }
+}
+
+/// <summary>
+/// Represents Template specific information for code generation.
+/// </summary>
+public class SitecoreTemplate : SitecoreItem
+{
+    /// <summary>
+    /// The namespace broken out into individual segments.
+    /// </summary>
+    public IEnumerable<string> NamespaceSegments { get; }
+
+    /// <summary>
+    /// A list of all templates this template inherits from.
+    /// </summary>
+    public List<SitecoreTemplate> BaseTemplates { get; set; }
+
+    /// <summary>
+    /// A list of Sitecore Fields that make up this sitecore template.
+    /// </summary>
+    public List<SitecoreField> Fields { get; set; }
+}
+
+/// <summary>
+/// Represents Field specific information for code generation.
+/// </summary>
+public class SitecoreField : SitecoreItem
+{
+    /// <summary>
+    /// The type of the field from the template editor.
+    /// </summary>
+    public string Type { get; set; }
+}
+*/			
+#>
+<#
+SitecoreTemplate template = Model as SitecoreTemplate;
+
+if (template == null)
+{
+	return string.Empty;
+}
+
+
+var baseTemplates = template.BaseTemplates;
+var baseTemplatesRecursive = RecursiveBaseTemplateList(template);
+var combinedTemplateList = new List<SitecoreTemplate>(baseTemplatesRecursive);
+combinedTemplateList.Add(template);
+var combinedFieldList = GetCombinedFieldList(combinedTemplateList);
+
+#>
+
+
+#region <#= template.Name #>
+
+namespace <#= FullNamespace(template) #>
+{
+	/// <summary>
+	/// Generated FakeDb constructable template for <#= ClassItemName(template.Name) #> (Template ID: <#= template.ID.ToString("b").ToUpper() #>)
+	/// </summary>
+	/// <seealso cref="Sitecore.FakeDb.Construct.ConstructableDbTemplate" />
+	public partial class <#= ClassItemName(template.Name) #> : ConstructableDbTemplate
+	{
+		public override void ConstructDb(Db db)
+		{
+			db.Add(new DbTemplate(TemplateName, TemplateId)
+			{
+<#	foreach(var field in combinedFieldList)
+{
+	var fieldName = GetFieldNameConstant(field);
+	var fieldId = GetFieldIdConstant(field);
+#>
+				new DbField(<#=fieldName#>, <#=fieldId#>),
+<#
+}
+#>
+			});
+		}
+
+		public static ID TemplateId = new ID("<#= template.ID.ToString("b").ToUpper() #>");
+		public const string TemplateName = "<#= template.Name #>";
+
+		public static class FieldNames
+		{
+<#	foreach(var field in combinedFieldList)
+{
+#>
+			public const string <#=TitleCase(field.Name)#> = "<#= field.Name #>";
+<#
+}
+#>
+		}
+
+		public static class FieldIds
+		{
+<#	foreach(var field in combinedFieldList)
+{
+#>
+			public static ID <#=TitleCase(field.Name)#> = new ID("<#= field.ID.ToString("b").ToUpper() #>");
+<#
+}
+#>
+		}
+	}
+}
+
+#endregion
+
+
+<#+
+private const string SitecoreSystemTemplatePath = "/sitecore/templates/System/";
+private const string ClientTemplatePath = "/sitecore/templates/User Defined/";
+
+public string GetTemplateIdConstant(SitecoreTemplate template)
+{
+	return ClassItemName(template.Name) + ".Constants.TemplateIdStr";
+}
+
+public string GetFieldNameConstant(SitecoreField field)
+{
+	return "FieldNames." + TitleCase(field.Name);
+}
+
+public string GetFieldIdConstant(SitecoreField field)
+{
+	return "FieldIds." + TitleCase(field.Name);
+}
+
+public string ClassItemName(string name)
+{
+	return ClassName(name) + "DbTemplate";
+}
+
+public string ClassName(string name)
+{
+	return TitleCase(name);
+}
+
+public string TitleCase(string name)
+{
+	name = Regex.Replace(name, "([a-z](?=[A-Z])|[A-Z](?=[A-Z][a-z]))", "$1 ");
+	name = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name);
+	name = Regex.Replace(name, @"[^a-zA-Z0-9]", String.Empty);
+
+	var firstChar = 0;
+
+	if (int.TryParse(name.Substring(0, 1), out firstChar))
+	{
+		var numberToWord = string.Empty;
+
+		switch(firstChar)
+		{
+			case 0:
+				numberToWord = "Zero";
+				break;
+			case 1:
+				numberToWord = "One";
+				break;
+			case 2:
+				numberToWord = "Two";
+				break;
+			case 3:
+				numberToWord = "Three";
+				break;
+			case 4:
+				numberToWord = "Four";
+				break;
+			case 5:
+				numberToWord = "Five";
+				break;
+			case 6:
+				numberToWord = "Six";
+				break;
+			case 7:
+				numberToWord = "Seven";
+				break;
+			case 8:
+				numberToWord = "Eight";
+				break;
+			case 9:
+				numberToWord = "Nine";
+				break;
+		}
+
+		name = numberToWord + name.Remove(0, 1);
+	}
+	
+	return name;
+}
+
+public string FullNamespace(SitecoreTemplate template)
+{
+	return DefaultNamespace + ".DbTemplates";
+}
+
+public ICollection<SitecoreField> GetCombinedFieldList(IEnumerable<SitecoreTemplate> templates)
+{
+	var fields = new Dictionary<string, SitecoreField>();
+
+	foreach (var template in templates)
+	{
+		foreach(var field in template.Fields)
+		{
+			if (!fields.ContainsKey(field.Name))
+			{
+				fields.Add(field.Name, field);
+			}
+		}
+	}
+
+	return fields.Values;
+}
+
+public IEnumerable<SitecoreTemplate> RecursiveBaseTemplateList(SitecoreTemplate template)
+{
+	var list = new List<SitecoreTemplate>();
+
+	if (template == null || template.BaseTemplates == null)
+	{
+		return list;
+	}
+	
+	foreach (var baseTemplate in template.BaseTemplates)
+	{
+		if (baseTemplate != null)
+		{
+			if (!list.Any(t => t.ID == baseTemplate.ID))
+			{
+				list.Add(baseTemplate);
+			}
+
+			foreach (var innerBaseTemplate in RecursiveBaseTemplateList(baseTemplate))
+			{
+				if (!list.Any(t => t.ID == innerBaseTemplate.ID))
+				{
+					list.Add(innerBaseTemplate);
+				}
+			}
+		}
+	}
+	
+	return list;
+}
+#>

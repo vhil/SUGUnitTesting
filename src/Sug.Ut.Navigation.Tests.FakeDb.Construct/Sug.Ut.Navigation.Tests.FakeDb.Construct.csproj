@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ECCCB0E8-63C5-4852-81D7-E5F7F9A9AB7B}</ProjectGuid>
+    <ProjectGuid>{AF6D17ED-1DD6-4416-990F-85DAB749EBE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sitecore.FakeDb.Construct</RootNamespace>
-    <AssemblyName>Sitecore.FakeDb.Construct</AssemblyName>
+    <RootNamespace>Sug.Ut.Navigation.Tests.FakeDb.Construct</RootNamespace>
+    <AssemblyName>Sug.Ut.Navigation.Tests.FakeDb.Construct</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentAssertions, Version=4.17.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.17.0\lib\net45\FluentAssertions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentAssertions.Core, Version=4.17.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.17.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -54,6 +62,14 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NSubstitute, Version=1.10.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.1.10.0.0\lib\net45\NSubstitute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sitecore.FakeDb, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.FakeDb.1.3.2\lib\net45\Sitecore.FakeDb.dll</HintPath>
       <Private>True</Private>
@@ -68,6 +84,10 @@
     </Reference>
     <Reference Include="Sitecore.Logging.Client, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.Logging.Client.8.2.160729\lib\NET452\Sitecore.Logging.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.Nexus, Version=1.0.4415.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Nexus.NoReferences.8.2.160729\lib\NET452\Sitecore.Nexus.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.NVelocity, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -88,27 +108,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConstructableDbTemplate.cs" />
-    <Compile Include="FakeDbConstructFactory.cs" />
+    <Compile Include="DbTemplates\GeneratedDbTemplates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\NavigationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="TDS transformations\FakeDbHeader.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FakeDbHeader.cs</LastGenOutput>
-    </Content>
-    <Content Include="TDS transformations\FakeDbItem.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FakeDbItem.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\Sitecore.FakeDb.Construct\Sitecore.FakeDb.Construct.csproj">
+      <Project>{ecccb0e8-63c5-4852-81d7-e5f7f9a9ab7b}</Project>
+      <Name>Sitecore.FakeDb.Construct</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sug.Ut.Navigation\Sug.Ut.Navigation.csproj">
+      <Project>{079c4d5e-adb0-44f1-b8b7-f5cf659163a2}</Project>
+      <Name>Sug.Ut.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sug.Ut.SitecoreExtensions\Sug.Ut.SitecoreExtensions.csproj">
+      <Project>{bc12e816-46d2-4b6b-b5ed-5debdf1efc9a}</Project>
+      <Name>Sug.Ut.SitecoreExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

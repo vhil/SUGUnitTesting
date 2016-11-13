@@ -27,7 +27,7 @@ gulp.task("Publish-Solution", function () {
 	if (config.runCleanBuilds) {
 		targets = ["Clean", "Build"];
 	}
-	var projects = ["./src/**/Sug.Ut.*.csproj", "!./src/**/*.Tests.csproj", "!./src/**/*.FakeDb.csproj"];
+	var projects = ["./src/**/Sug.Ut.*.csproj", "!./src/**/*.Tests.csproj", "!./src/**/*.Tests.Tds.csproj", "!./src/**/*.FakeDb.csproj", "!./src/**/*.FakeDb.Construct.csproj"];
 	console.log("publish to " + dest + " folder");
 	return gulp.src(projects)
 	  .pipe(foreach(function (stream, file) {
