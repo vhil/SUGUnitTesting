@@ -2,6 +2,7 @@
 using System.Linq;
 using Sitecore.Abstractions;
 using Sitecore.Data.Items;
+using Sug.Ut.SitecoreExtensions.Extensions;
 using Sug.Ut.SitecoreExtensions.Services;
 
 namespace Sug.Ut.Navigation.Services
@@ -9,7 +10,7 @@ namespace Sug.Ut.Navigation.Services
 	public class NavigationService : INavigationService
 	{
         protected readonly BaseLinkManager LinkManager;
-	    protected readonly IItemExtensionsService ItemExtensions;
+        protected readonly IItemExtensionsService ItemExtensions;
 
 	    public NavigationService(
             BaseLinkManager linkManager,

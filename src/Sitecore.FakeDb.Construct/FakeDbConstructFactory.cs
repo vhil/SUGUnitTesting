@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -13,24 +14,25 @@ namespace Sitecore.FakeDb.Construct
 
 		public virtual Db ConstructDbFromAssembly(Assembly assembly)
 		{
-			var db = new Db();
-
 			var constructables = assembly.GetTypes()
 				.Where(x => typeof(ConstructableDbTemplate).IsAssignableFrom(x))
 				.ToArray();
 
-			foreach (var type in constructables)
-			{
-				var methodInfo = type.GetMethod("ConstructDb");
+		    var templates = constructables.Select(type => (ConstructableDbTemplate) Activator.CreateInstance(type, null));
 
-				if (methodInfo != null)
-				{
-					var classInstance = Activator.CreateInstance(type, null);
-					methodInfo.Invoke(classInstance, new object[] { db });
-				}
-			}
-
-			return db;
+			return this.ConstructDb(templates);
 		}
-	}
+
+        public virtual Db ConstructDb(IEnumerable<ConstructableDbTemplate> constructables)
+        {
+            var db = new Db();
+
+            foreach (var template in constructables)
+            {
+                template.ConstructDb(db);
+            }
+
+            return db;
+        }
+    }
 }

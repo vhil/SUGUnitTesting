@@ -26,7 +26,7 @@ namespace Sug.Ut.Navigation.Tests.FakeDb.Construct.Services
 			this.NonNavigationTemplateId = ID.NewID;
 			this.LinkManager = Substitute.For<BaseLinkManager>();
 			this.NavigationService = new NavigationService(this.LinkManager, new ItemExtensionsService());
-		}
+        }
 
 		[Test]
 		public void GetPrimaryNavigation_MixedTree_ReturnsOnlyNavigableItems()
@@ -51,8 +51,8 @@ namespace Sug.Ut.Navigation.Tests.FakeDb.Construct.Services
 
 				var currentItem = db.GetItem(currentItemId);
 
-				// act
-				var primaryNavigation = this.NavigationService.GetPrimaryNavigation(currentItem);
+                // act
+                var primaryNavigation = this.NavigationService.GetPrimaryNavigation(currentItem);
 
 				// assert
 				primaryNavigation.Should().NotBeNull();

@@ -7,16 +7,22 @@ using global::Sitecore.FakeDb.Construct;
 namespace Sug.Ut.Navigation.Tests.FakeDb.Construct.DbTemplates
 {
 	/// <summary>
-	/// Generated FakeDb constructable template for NavigationRootDbTemplate (Template ID: {4753C2DB-B490-4C2C-AD11-944EC7E4A2D9})
+	/// Generated FakeDb constructable object for Navigation Root template (Template ID: {4753C2DB-B490-4C2C-AD11-944EC7E4A2D9})
 	/// </summary>
 	/// <seealso cref="Sitecore.FakeDb.Construct.ConstructableDbTemplate" />
 	public partial class NavigationRootDbTemplate : ConstructableDbTemplate
 	{
 		public override void ConstructDb(Db db)
 		{
-			db.Add(new DbTemplate(TemplateName, TemplateId)
-			{
-			});
+			var template = new DbTemplate(TemplateName, TemplateId)
+		    {
+		        BaseIDs = new ID[]
+		        {
+				},
+		    };
+
+
+            db.Add(template);
 		}
 
 		public static ID TemplateId = new ID("{4753C2DB-B490-4C2C-AD11-944EC7E4A2D9}");
@@ -38,18 +44,24 @@ namespace Sug.Ut.Navigation.Tests.FakeDb.Construct.DbTemplates
 namespace Sug.Ut.Navigation.Tests.FakeDb.Construct.DbTemplates
 {
 	/// <summary>
-	/// Generated FakeDb constructable template for NavigationDbTemplate (Template ID: {F16CDC22-CF07-4688-B864-5825FA424C0E})
+	/// Generated FakeDb constructable object for Navigation template (Template ID: {F16CDC22-CF07-4688-B864-5825FA424C0E})
 	/// </summary>
 	/// <seealso cref="Sitecore.FakeDb.Construct.ConstructableDbTemplate" />
 	public partial class NavigationDbTemplate : ConstructableDbTemplate
 	{
 		public override void ConstructDb(Db db)
 		{
-			db.Add(new DbTemplate(TemplateName, TemplateId)
-			{
-				new DbField(FieldNames.HideFromNavigation, FieldIds.HideFromNavigation),
-				new DbField(FieldNames.NavigationTitle, FieldIds.NavigationTitle),
-			});
+			var template = new DbTemplate(TemplateName, TemplateId)
+		    {
+		        BaseIDs = new ID[]
+		        {
+				},
+		    };
+
+			template.Fields.Add(new DbField(FieldNames.HideFromNavigation, FieldIds.HideFromNavigation));
+			template.Fields.Add(new DbField(FieldNames.NavigationTitle, FieldIds.NavigationTitle));
+
+            db.Add(template);
 		}
 
 		public static ID TemplateId = new ID("{F16CDC22-CF07-4688-B864-5825FA424C0E}");

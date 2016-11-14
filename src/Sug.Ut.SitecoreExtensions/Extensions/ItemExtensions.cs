@@ -17,5 +17,10 @@ namespace Sug.Ut.SitecoreExtensions.Extensions
         {
             return Service.IsDerived(item, templateId);
         }
+
+        public static Item GetAncestorOrSelfOfTemplate(this Item item, ID templateId)
+        {
+            return Service.GetAncestorOrSelfOfTemplate(item, templateId);
+        }
     }
 }

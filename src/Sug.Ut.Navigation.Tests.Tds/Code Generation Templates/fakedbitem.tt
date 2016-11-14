@@ -128,7 +128,7 @@ var baseTemplatesRecursive = RecursiveBaseTemplateList(template);
 var combinedTemplateList = new List<SitecoreTemplate>(baseTemplatesRecursive);
 combinedTemplateList.Add(template);
 var combinedFieldList = GetCombinedFieldList(combinedTemplateList);
-
+var fieldList = GetFieldList(template);
 #>
 
 #region <#= template.Name #>
@@ -136,25 +136,34 @@ var combinedFieldList = GetCombinedFieldList(combinedTemplateList);
 namespace <#= FullNamespace(template) #>
 {
 	/// <summary>
-	/// Generated FakeDb constructable template for <#= ClassItemName(template.Name) #> (Template ID: <#= template.ID.ToString("b").ToUpper() #>)
+	/// Generated FakeDb constructable object for <#= template.Name #> template (Template ID: <#= template.ID.ToString("b").ToUpper() #>)
 	/// </summary>
 	/// <seealso cref="Sitecore.FakeDb.Construct.ConstructableDbTemplate" />
 	public partial class <#= ClassItemName(template.Name) #> : ConstructableDbTemplate
 	{
 		public override void ConstructDb(Db db)
 		{
-			db.Add(new DbTemplate(TemplateName, TemplateId)
-			{
-<#	foreach(var field in combinedFieldList)
+			var template = new DbTemplate(TemplateName, TemplateId)
+		    {
+		        BaseIDs = new ID[]
+		        {
+<#
+foreach (var baseTemplate in baseTemplatesRecursive)
+{
+#>
+					ID.Parse("<#=baseTemplate.ID.ToString("b").ToUpper()#>"), // <#=baseTemplate.Name #>
+<#}#>				},
+		    };
+
+<#	foreach(var field in fieldList)
 {
 	var fieldName = GetFieldNameConstant(field);
 	var fieldId = GetFieldIdConstant(field);
 #>
-				new DbField(<#=fieldName#>, <#=fieldId#>),
-<#
-}
-#>
-			});
+			template.Fields.Add(new DbField(<#=fieldName#>, <#=fieldId#>));
+<#}#>
+
+            db.Add(template);
 		}
 
 		public static ID TemplateId = new ID("<#= template.ID.ToString("b").ToUpper() #>");
@@ -284,6 +293,21 @@ public ICollection<SitecoreField> GetCombinedFieldList(IEnumerable<SitecoreTempl
 			{
 				fields.Add(field.Name, field);
 			}
+		}
+	}
+
+	return fields.Values;
+}
+
+public ICollection<SitecoreField> GetFieldList(SitecoreTemplate template)
+{
+	var fields = new Dictionary<string, SitecoreField>();
+
+	foreach(var field in template.Fields)
+	{
+		if (!fields.ContainsKey(field.Name))
+		{
+			fields.Add(field.Name, field);
 		}
 	}
 
