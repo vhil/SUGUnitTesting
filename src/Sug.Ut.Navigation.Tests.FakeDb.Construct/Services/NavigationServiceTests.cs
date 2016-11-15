@@ -31,7 +31,7 @@ namespace Sug.Ut.Navigation.Tests.FakeDb.Construct.Services
 		[Test]
 		public void GetPrimaryNavigation_MixedTree_ReturnsOnlyNavigableItems()
 		{
-			using (var db = new FakeDbConstructFactory().ConstructDbFromAssembly(Assembly.GetExecutingAssembly()))
+			using (var db = FakeDbConstructFactory.ConstructDbFromAssembly(Assembly.GetExecutingAssembly()))
 			{
 				var currentItemId = ID.NewID;
 				var nonNavItemId = ID.NewID;
@@ -64,7 +64,7 @@ namespace Sug.Ut.Navigation.Tests.FakeDb.Construct.Services
 		[Test]
 		public void GetPrimaryNavigation_NormalTree_CurrentItemShouldBeActive()
 		{
-			using (var db = new FakeDbConstructFactory().ConstructDbFromAssembly(Assembly.GetExecutingAssembly()))
+			using (var db = FakeDbConstructFactory.ConstructDbFromAssembly(Assembly.GetExecutingAssembly()))
 			{
 				var currentItemId = ID.NewID;
 				// setup

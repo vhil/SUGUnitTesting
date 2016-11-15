@@ -5,14 +5,14 @@ using System.Reflection;
 
 namespace Sitecore.FakeDb.Construct
 {
-	public class FakeDbConstructFactory
+	public static class FakeDbConstructFactory
 	{
-		public virtual Db ConstructDbFromExecutingAssembly()
+		public static Db ConstructDbFromExecutingAssembly()
 		{
-			return this.ConstructDbFromAssembly(Assembly.GetExecutingAssembly());
+			return ConstructDbFromAssembly(Assembly.GetExecutingAssembly());
 		}
 
-		public virtual Db ConstructDbFromAssembly(Assembly assembly)
+		public static Db ConstructDbFromAssembly(Assembly assembly)
 		{
 			var constructables = assembly.GetTypes()
 				.Where(x => typeof(ConstructableDbTemplate).IsAssignableFrom(x))
@@ -20,10 +20,10 @@ namespace Sitecore.FakeDb.Construct
 
 		    var templates = constructables.Select(type => (ConstructableDbTemplate) Activator.CreateInstance(type, null));
 
-			return this.ConstructDb(templates);
+			return ConstructDb(templates);
 		}
 
-        public virtual Db ConstructDb(IEnumerable<ConstructableDbTemplate> constructables)
+        public static Db ConstructDb(IEnumerable<ConstructableDbTemplate> constructables)
         {
             var db = new Db();
 

@@ -3,6 +3,7 @@ using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using Sitecore.Data;
+using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
 using Sitecore.Globalization;
 using Sug.Ut.Metadata.Services;
@@ -41,6 +42,9 @@ namespace Sug.Ut.Metadata.Tests.Services
 				this.Database);
 
 			this.MetadataItem[Templates.Metadata.FieldNames.MetaTitle].Returns("Page Meta Title");
+			//var field = Substitute.For<Field>();
+			//field.Value.Returns("Page Meta Title");
+			//this.MetadataItem.Fields[Templates.Metadata.FieldNames.MetaTitle].Returns(field);
 			this.MetadataItem[Templates.Metadata.FieldNames.MetaDescription].Returns("Page Meta Description");
 			this.MetadataItem[Templates.Metadata.FieldNames.MetaKeywords].Returns("Page Meta Keywords");
 
